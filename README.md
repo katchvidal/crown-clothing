@@ -1,70 +1,59 @@
-# Getting Started with Create React App
+#   Creating a Ecommer with React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+```
+    1.  Structure of Folders
+    2.  Adding a Sass & Google Fonts
+```
 
-## Available Scripts
+##  Routing
+```
+    -   We implemented react-router to manage the router
+    -   https://www8.zippyshare.com/v/3bg8ZWAR/file.html
+        <Browser Router> </Browser Router> Wrap Tag
+        <Routes>
 
-In the project directory, you can run:
+            <Route path='/' element={ <Home />}></Route>  
+            <Route path='/shop' element={ <Shop /> }></Route>  
 
-### `npm start`
+        </Routes>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+        <Outlet />
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+##  Adding Firebase
+```
+    -   We implemented Firebase to manage the authentication
+        -> NPM INSTALL FIREBASE
+    -   we starting a crud with firebase ( create, read, update, delete )
 
-### `npm test`
+    // Initialize Firebase
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    const firebaseApp = initializeApp(firebaseConfig);
 
-### `npm run build`
+    const provider = new GoogleAuthProvider();
+    provider.setCustomParameters({
+        prompt: 'select_account'
+    })
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    export const auth = getAuth(); 
+    export const signInWithGooglePopup = () => signInWithPopup( auth, provider )
+    
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+##  Setting a Form
+```
+    1.  Create a Initial State: defaultFormFields = { displayName: '', email: '', .... }
+    2.  Build a Form ->                 
+        <label>Display Name</label>
+        <input
+            type='text'
+            onChange={handleChange}
+            name='displayName'
+            value={displayName}
+            required />
+    3.  Controlling a Change ( changeHandler Function )
+        const handleChange = (e) => {
+            const { name, value } = e.target;   -> Destructuring elements ( name, value )
+            setformFields({ ...formFields , [name]: value })
+        }
+```
