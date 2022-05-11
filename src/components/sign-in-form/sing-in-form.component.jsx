@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import Button from '../buttom/button.component';
 import { FormInput } from '../form-input/form-input.component';
 import { createUserDocumentFromAuth, signInWithEmailAndPasswordK, signInWithGooglePopup } from '../../lib/firebase/firebase.lib';
 import './sign-in-form.style.scss'
-
 
 
 
@@ -21,7 +20,6 @@ export const SignInForm = () => {
         setformFields({ ...formFields, [name]: value })
     }
     const { email, password } = formFields;   //  Dentro del estado FormFields {  email, password }
-
     const resetFormField = () => {
         setformFields(defaultformFields)
     }
@@ -30,8 +28,7 @@ export const SignInForm = () => {
         e.preventDefault()
 
         try {
-            const response = await signInWithEmailAndPasswordK(email, password)
-            console.log(response);
+            const { user } = await signInWithEmailAndPasswordK(email, password)        
             resetFormField()
         } catch (error) {
             switch( error.code ){
@@ -50,8 +47,8 @@ export const SignInForm = () => {
 
     //  Funcionalidad para Authenticar usuario con Google Pop Up 
     const logGoogleUser = async () => {
-        const { user } = await signInWithGooglePopup();
-        const userDocRef = await createUserDocumentFromAuth(user)
+        await signInWithGooglePopup();
+       
     }
 
     return (

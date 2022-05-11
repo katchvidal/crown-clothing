@@ -57,3 +57,13 @@
             setformFields({ ...formFields , [name]: value })
         }
 ```
+
+##  React Context for State Management
+```
+    We need to save the state of the profile user data in store, firebase can manage this data and return when we needed
+    -   We need to create context to manage the user profile data for sign in ( external storage place ( firebase ) ) is exacty wwhat react context
+        do
+    - What we need to do:
+        1.  Create a Context maybe contain a state and function to modify the state
+        2.  Create de ContextProvider maybe contaiain a useState Hook necessary to check a state
+```

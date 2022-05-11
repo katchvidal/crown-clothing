@@ -23,6 +23,7 @@ export const SignUpForm = () => {
     const resetFormField = () => {
         setformFields(defaultformFields)
     }
+
     const handleSubmit = async (e) => {
         e.preventDefault()
         if (password != confirmpassword) {
