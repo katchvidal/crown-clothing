@@ -82,3 +82,9 @@ export const SignOutpK = async() => {
 }
 
 export const onAuthStateChnagedListerK = ( callback ) => onAuthStateChanged(auth, callback )
+
+/**
+ * next: callback
+ * error: errorcallback
+ * complete: completecallback
+ */
