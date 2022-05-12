@@ -3,6 +3,7 @@ import Button from '../buttom/button.component';
 import { FormInput } from '../form-input/form-input.component';
 import { createUserDocumentFromAuth, signInWithEmailAndPasswordK, signInWithGooglePopup } from '../../lib/firebase/firebase.lib';
 import './sign-in-form.style.scss'
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -12,7 +13,7 @@ const defaultformFields = {
 }
 
 export const SignInForm = () => {
-
+    const navigate = useNavigate()
     const [formFields, setformFields] = useState(defaultformFields);
     
     const handleChange = (e) => {
@@ -30,6 +31,7 @@ export const SignInForm = () => {
         try {
             const { user } = await signInWithEmailAndPasswordK(email, password)        
             resetFormField()
+            navigate('/')
         } catch (error) {
             switch( error.code ){
                 case 'auth/user-not-found':
