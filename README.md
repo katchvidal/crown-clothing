@@ -73,4 +73,8 @@
 ```
     1.  Create a User in the platform app.netlify.com
     2.  in Dashboard of netlify select -> Github Repository ( Existing Project [ Select specify branch ] )
+
+    /* Netlify Page Not Found */
+    The HTML represent the build Final of React Application ( HTML, JS, CSS ) Single Page Aplication the servidor asking what need to build de directory complete ( routes )
+    create in the directory Public -> file name: _redirects paste the next code -> /* /index.html 200
 ```
