@@ -82,7 +82,10 @@ export const SignInForm = () => {
 
                     <Button type='submit'> Sign In </Button>
 
-                    <Button type='button' buttonType='google' onClick={logGoogleUser}> <i className="fa fa-google"></i> Google Sign In </Button>
+                    <Button 
+                    type='button' 
+                    buttonType='google'
+                    onClick={logGoogleUser}> <i className="fa fa-google"></i> Google Sign In </Button>
                 </div>
 
             </form>

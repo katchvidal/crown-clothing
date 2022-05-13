@@ -7,7 +7,7 @@ import { getAuth,
     signInWithEmailAndPassword, 
     signOut, 
     onAuthStateChanged } from 'firebase/auth'
-import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore'
+import { getFirestore, doc, getDoc, setDoc, collection, writeBatch, query, getDocs } from 'firebase/firestore'
 
 
 const firebaseConfig = {
@@ -68,8 +68,7 @@ export const createUserDocumentFromAuth = async (userAuth) => {
 export const createAuthUserEmailPassword = async ( email, password ) => {
     if ( !email || !password ) return; // If we not recived email & password return nothing;
     return await createUserWithEmailAndPassword( auth, email, password )
- }
-
+}
 
 export const signInWithEmailAndPasswordK = async ( email, password ) => {
     if( !email || !password ) return;
@@ -82,6 +81,32 @@ export const SignOutpK = async() => {
 }
 
 export const onAuthStateChnagedListerK = ( callback ) => onAuthStateChanged(auth, callback )
+
+export const AddCollectionAndMethods = async( collectionKey, objectsToAdd, field   ) => { 
+    const collectionRef = collection( db, collectionKey );
+    const batch = writeBatch(db);
+
+    objectsToAdd.forEach((object) => {
+        const docRef = doc( collectionRef , object[field].toLowerCase());
+        batch.set( docRef, object )
+    })
+
+    await batch.commit();
+    console.log('done');
+}
+
+export const getCategoriesAndDocuments = async () => {
+    const collectionRef = collection(db, 'categories')
+    const q = query( collectionRef )
+    const querySnapShot = await getDocs( q )
+    const categoryMap = querySnapShot.docs.reduce(( acc, docSnapShot ) => {
+        const { title, items } = docSnapShot.data()
+        acc[title.toLowerCase()] = items
+        return acc;
+    }, {})
+
+    return categoryMap;
+}
 
 /**
  * next: callback

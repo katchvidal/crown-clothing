@@ -66,4 +66,11 @@
     - What we need to do:
         1.  Create a Context maybe contain a state and function to modify the state
         2.  Create de ContextProvider maybe contaiain a useState Hook necessary to check a state
+
+```
+
+##  Deploy Netlify
+```
+    1.  Create a User in the platform app.netlify.com
+    2.  in Dashboard of netlify select -> Github Repository ( Existing Project [ Select specify branch ] )
 ```

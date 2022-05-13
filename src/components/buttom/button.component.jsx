@@ -1,22 +1,24 @@
-/**
- * We have 3 types of button
- * default
- * inverted
- * googe sign in
- */
-
 import React from 'react'
-import './button.style.scss'
+import { BaseButton, GoogleSignInButton, InvertedButton } from './button.style.jsx'
 
 const BUTTON_TYPES_CLASES = {
-    default: 'default',
+    base: 'base',
     inverted: 'inverted',
-    google: 'google-sign-in'
+    google: 'google'
 } 
 
+const getButton = (buttonType = BUTTON_TYPES_CLASES.base ) => (
+  {
+    [BUTTON_TYPES_CLASES.base]: BaseButton,
+    [BUTTON_TYPES_CLASES.google]: GoogleSignInButton,
+    [BUTTON_TYPES_CLASES.inverted]: InvertedButton,
+  }[buttonType]
+)
+
 const Button = ({ children, buttonType, ...otherProps }) => {
+  const CUSTOMBUTTON = getButton( buttonType )
   return (
-    <button className={`button-container ${BUTTON_TYPES_CLASES[buttonType]}`} {...otherProps} > { children } </button>
+    <CUSTOMBUTTON {...otherProps}> { children } </CUSTOMBUTTON>
   )
 }
 
